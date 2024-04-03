@@ -29,7 +29,7 @@ This product is a smaller single day project, hense the very straightforward com
         4. Choose another account
             - Return to account page
 
-### Action File:
+### Actions:
 
 - **Show account history:**
     - *Print each line of the account file*
@@ -56,3 +56,15 @@ This product is a smaller single day project, hense the very straightforward com
 - Format: "*Date* *Time* *amount deposited/withdrawn* *Reason* Total: *Total amount in the chosen account after deposit/withdraw*"
 - Data stored in ".txt" files for simplicity purposes
 
+### File input:
+
+- Utilizes file reading and printing fucntinality to display the specified account history to the user
+- Aids in giving funtionality to adding data to the account files
+
+### Add Data:
+
+- Retrieve data from the user (date/time, deposit/withdraw amount, deposite/withdraw reason, calculates specified account total)
+- Update account file(s) with new transactional information
+- Erase previous lines of account files if necessary
+
+  
