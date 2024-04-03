@@ -1,0 +1,5 @@
+*Account Name*
+
+MM:DD:YYYY HR:SEC:MSEC *Amount Withdrawn/Deposited* *Reason* Total: $X.XX
+
+12:31:2025 01:10:54 $13.50 Example reason Total: $1013.50
