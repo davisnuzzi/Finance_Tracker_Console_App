@@ -1,6 +1,4 @@
 import java.io.IOException;
-
-
 /**
  * 
  * @author Davis Nuzzi
@@ -20,6 +18,7 @@ public class Driver {
 	
 	public static void main(String[] args) throws IOException 
 	{
+		JDBCInitialization.initialize();
 		ConsoleUI.startScreen();
 	}
 

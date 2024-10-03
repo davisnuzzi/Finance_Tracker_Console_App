@@ -43,19 +43,7 @@ public class Actions
 				{
 					switch (actionNum) 
 					{
-						case 1:
-							FileInput.showFile(Actions.filename);
-							break;
-						case 2:
-						case 3:
-							AddData.addInfo();
-							break;
-						case 4:
-							ConsoleUI.startScreen();
-							break;
-						default:
-							// Handle any unexpected cases (if needed)
-							break;
+						
 					}
 					
 					startScreen();
