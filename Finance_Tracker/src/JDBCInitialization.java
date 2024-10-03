@@ -7,7 +7,7 @@ public class JDBCInitialization
 	public static Scanner keyboard = new Scanner(System.in);
     
     // Database URL, username, and password
-    static final String JDBC_URL = "jdbc:mysql://localhost:3306/testDB"; // !!! replace 'testdb' with actual db name !!! 
+    static final String JDBC_URL = "jdbc:mysql://localhost:3306/user_finances"; 
     private static String JDBC_USER = "";
     private static String JDBC_PASSWORD = "";
 
