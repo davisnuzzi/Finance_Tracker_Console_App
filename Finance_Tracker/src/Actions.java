@@ -22,14 +22,8 @@ public class Actions
 	
 	public static void startScreen() throws IOException
 	{
-		if(ConsoleUI.accNum == 1)
-		{
-			account = "Chase";
-		}
-		else
-		{
-			account = "PayPal";
-		}
+		account = (ConsoleUI.accNum == 1) ? "Chase" : "PayPal";
+
 		filename = account + ".txt";
 		
 		System.out.println("We are currently looking at your " + account + 
@@ -45,26 +39,28 @@ public class Actions
 			{
 				actionNum = ConsoleUI.keyboard.nextInt();
 				
-				if(ConsoleUI.checkValidNumber(actionNum, 1, 4))
+				if (ConsoleUI.checkValidNumber(actionNum, 1, 4)) 
 				{
-					if(actionNum == 1)
+					switch (actionNum) 
 					{
-						FileInput.showFile(Actions.filename);
+						case 1:
+							FileInput.showFile(Actions.filename);
+							break;
+						case 2:
+						case 3:
+							AddData.addInfo();
+							break;
+						case 4:
+							ConsoleUI.startScreen();
+							break;
+						default:
+							// Handle any unexpected cases (if needed)
+							break;
 					}
-					else if(actionNum == 2)
-					{
-						AddData.addInfo();
-					}
-					else if(actionNum == 3)
-					{
-						AddData.addInfo();
-					}
-					else
-					{
-						ConsoleUI.startScreen();
-					}
+					
 					startScreen();
 				}
+				
 			}
 			catch(InputMismatchException e)
 			{
