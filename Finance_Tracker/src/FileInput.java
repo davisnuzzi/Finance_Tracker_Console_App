@@ -29,6 +29,8 @@ public class FileInput {
 		}
 		
 		System.out.println();
+
+		file.close();
 	}
 	
 	/**
@@ -64,8 +66,11 @@ public class FileInput {
 		{
 			accList[i] = file.nextLine(); 
 		}	
-			
-		return accList;		
+		
+		file.close();
+		
+		return accList;	
+		
 	}
 	
 }
