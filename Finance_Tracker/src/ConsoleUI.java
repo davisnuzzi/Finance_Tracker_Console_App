@@ -49,7 +49,7 @@ public class ConsoleUI
 			} 
 			catch (InputMismatchException e) 
 			{
-				
+				System.out.println("Please input a valid number.");
 			}
 			finally
 			{
@@ -70,14 +70,6 @@ public class ConsoleUI
 	
 	public static boolean checkValidNumber(int num, int low, int high)
 	{
-		if(String.valueOf(num).compareTo("z") >= 0 || num < low || num > high)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-		
+		return num < low || num > high ? false : true;	
 	}
 }

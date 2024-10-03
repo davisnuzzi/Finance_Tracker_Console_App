@@ -27,6 +27,7 @@ public class FileInput {
 		{
 			System.out.println(file.nextLine());
 		}
+		
 		System.out.println();
 	}
 	
@@ -35,7 +36,7 @@ public class FileInput {
 	 * Reads in a file and stores contents in an array and returns it.
 	 * 
 	 * @param filename
-	 * @return the array in which the contents of the file are stored
+	 * @return array in which the contents of the file are stored
 	 * @throws FileNotFoundException
 	 */
 	
@@ -45,7 +46,7 @@ public class FileInput {
 			
 		int lines = 0;
 			
-		// initializes how many lines are in the file to set the array size to
+		// Initialize how many lines are in the file to set array size
 		while (file.hasNextLine()) 
 		{
 			lines++;
@@ -58,14 +59,13 @@ public class FileInput {
 		
 		String[] accList = new String[lines];
 		
-		// stores the contents of the file into the array
+		// Store contents of file into accList
 		for (int i = 0; i < lines; ++i) 
 		{
 			accList[i] = file.nextLine(); 
 		}	
 			
-		return accList;
-				
+		return accList;		
 	}
 	
 }

@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.InputMismatchException;
-import java.time.*;
 
 /**
  * 
@@ -26,18 +25,17 @@ public class Actions
 		if(ConsoleUI.accNum == 1)
 		{
 			account = "Chase";
-			filename = account + ".txt";
 		}
 		else
 		{
 			account = "PayPal";
-			filename = account + ".txt";
 		}
+		filename = account + ".txt";
 		
 		System.out.println("We are currently looking at your " + account + 
 							" account.\n"
-							+ "What are you trying to do today? (Input number corresponding to the action)\n" +
-							"1. Show account history\n"
+							+ "What are you trying to do today? (Input number corresponding to the action)\n" 
+							+ "1. Show account history\n"
 							+ "2. Withdraw\n"
 							+ "3. Deposit\n"
 							+ "4. Choose another account\n");
@@ -67,14 +65,10 @@ public class Actions
 					}
 					startScreen();
 				}
-				else
-				{
-					
-				}
 			}
 			catch(InputMismatchException e)
 			{
-				
+				System.out.println("Please input a valid number.");
 			}
 		} while(true);
 	}
