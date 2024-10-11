@@ -21,13 +21,23 @@ public class ConsoleUI
 	 * Creates and executes the starting console application UI
 	 * 
 	 * @throws IOException
+	 * 
 	 */
 	
 	public static void startScreen() throws IOException
 	{
-		System.out.println("Which account are you wanting to look at? (Input number corresponding to the account)\n" + 
-							"1. Chase\n" + 
-							"2. PayPal\n");
+		ArrayList<String> accounts = UserAccounts.getAccounts();
+		
+		String chooseAccount = "Which account are you wanting to look at? (Input number corresponding to the account)\n";
+		
+		for(int i = 0; i < accounts.size(); i++)
+		{
+			chooseAccount = chooseAccount + (i+1) + ". " + accounts.get(i) + "\n";
+		}
+
+		chooseAccount = chooseAccount + (accounts.size()+1) + ". Add Account\n";
+		
+		System.out.println(chooseAccount);
 		
 		// Gather and check the user enters a valid input value
 		// If valid, execute further program methods, else, ask user for new input
@@ -37,10 +47,20 @@ public class ConsoleUI
 			{
 				accNum = keyboard.nextInt();
 				
-				if(checkValidNumber(accNum, 1, 2))
+				if(accNum < accounts.size())
 				{
 					Actions.startScreen();
 					break;
+				}
+				else if(accNum == accounts.size() + 1)
+				{
+					System.out.println("Name the account you want to add. (Ex: Chase savings, Paypal checking)");
+					keyboard.nextLine();
+					String accountName = keyboard.nextLine();
+					accountName = accountName.replaceAll(" ", "_");
+					UserAccounts.addAccount(accountName);
+					System.out.println("\n");
+					startScreen();
 				}
 				else
 				{
@@ -56,20 +76,7 @@ public class ConsoleUI
 				keyboard.nextLine();
 			}
 			
-			
 		} while (true);
 	}
 	
-	/**
-	 * 
-	 * Checks to see if the number selected is valid for the given parameter constraints.
-	 * 
-	 * @param num
-	 * @return the boolean value of whether or not the account number is valid
-	 */
-	
-	public static boolean checkValidNumber(int num, int low, int high)
-	{
-		return num < low || num > high ? false : true;	
-	}
 }
