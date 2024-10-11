@@ -8,8 +8,8 @@ public class JDBCInitialization
     
     // Database URL, username, and password
     static final String JDBC_URL = "jdbc:mysql://localhost:3306/user_finances"; 
-    private static String JDBC_USER = "";
-    private static String JDBC_PASSWORD = "";
+    public static String JDBC_USER = "";
+    public static String JDBC_PASSWORD = "";
 
     public static void initialize()
     {
@@ -56,7 +56,6 @@ public class JDBCInitialization
                 try 
                 {
                     connection.close();
-                    System.out.println("Database connection closed.");
                 } 
                 catch (SQLException e) 
                 {
