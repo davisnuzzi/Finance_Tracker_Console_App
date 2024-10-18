@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * 
  * @author Davis Nuzzi
- * @version 1.0
+ * @version 2.0
  *
  */
 
@@ -15,6 +15,8 @@ public class ConsoleUI
 	
 	// create menu number for which account the user is trying to access
 	static int accNum = 0;
+
+	public static ArrayList<String> accounts = new ArrayList<String>();
 	
 	/**
 	 * 
@@ -26,7 +28,7 @@ public class ConsoleUI
 	
 	public static void startScreen() throws IOException
 	{
-		ArrayList<String> accounts = UserAccounts.getAccounts();
+		accounts = UserAccounts.retreiveTableData("accounts");
 		
 		String chooseAccount = "Which account are you wanting to look at? (Input number corresponding to the account)\n";
 		

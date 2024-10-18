@@ -1,6 +1,13 @@
 import java.sql.*;
 import java.util.*;
 
+/**
+ * 
+ * @author Davis Nuzzi
+ * @version 2.0
+ *
+ */
+
 public class JDBCInitialization
 {
     // Scanner to read in user input
@@ -11,9 +18,16 @@ public class JDBCInitialization
     public static String JDBC_USER = "";
     public static String JDBC_PASSWORD = "";
 
+
+    /**
+     * 
+     * Initialize the username and password of database 
+     * and ensure successful connection for further program use
+     * 
+     */
     public static void initialize()
     {
-        // User inputs database username and password (more for personal use)
+        // Retrieve user inputs for database username and password (more for personal and security)
         System.out.println("Enter MySQL database username:");
         JDBC_USER = keyboard.next();
         System.out.println("\n");
@@ -22,14 +36,15 @@ public class JDBCInitialization
         JDBC_PASSWORD = keyboard.next();
         System.out.println("\n");
 
+        // initalize a null database connection
         Connection connection = null;
 
         try 
         {
-            // Load MySQL JDBC driver (optional for most modern JDBC setups)
+            // Load MySQL JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Establish connection
+            // Establish database connection
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
             System.out.println("Connected to the MySQL database successfully!");
 

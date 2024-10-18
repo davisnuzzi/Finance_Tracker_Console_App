@@ -1,16 +1,17 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
+
+/**
+ * 
+ * @author Davis Nuzzi
+ * @version 2.0
+ *
+ */
 
 public class UserAccounts 
 {
-        public static ArrayList<String> accounts = new ArrayList<>();
-
         // Get the account names from the user accounts table and store them into
-        public static ArrayList<String> getAccounts()
+        public static ArrayList<String> retreiveTableData(String tableName)
         {
                 ArrayList<String> dataList = new ArrayList<>();
                 Connection connection = null;
@@ -18,7 +19,7 @@ public class UserAccounts
                 try {
                         // Establish connection
                         connection = DriverManager.getConnection(JDBCInitialization.JDBC_URL, JDBCInitialization.JDBC_USER, JDBCInitialization.JDBC_PASSWORD);
-                        String sql = "SELECT * FROM accounts";
+                        String sql = "SELECT * FROM `" + tableName + "`";
                         PreparedStatement preparedStatement = connection.prepareStatement(sql);
                         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -78,7 +79,6 @@ public class UserAccounts
                         PreparedStatement insertStatement = connection.prepareStatement(insertSQL);
                         insertStatement.setString(1, data); // Set the value for the first (and only) column
                         insertStatement.executeUpdate();
-                        // System.out.println("Data added to the table.");
 
                         createAccountTable(data);
 
@@ -96,15 +96,14 @@ public class UserAccounts
                         // Ensure connection is closed properly
                         if (connection != null) 
                         {
-                        try 
-                        {
-                                connection.close();
-                                // System.out.println("Database connection closed.");
-                        } 
-                        catch (SQLException e) 
-                        {
-                                e.printStackTrace();
-                        }
+                                try 
+                                {
+                                        connection.close();
+                                } 
+                                catch (SQLException e) 
+                                {
+                                        e.printStackTrace();
+                                }
                         }
                 }
         }
@@ -129,9 +128,6 @@ public class UserAccounts
                         
                         PreparedStatement createTableStatement = connection.prepareStatement(createTableSQL);
                         createTableStatement.executeUpdate();
-                        // System.out.println(data + " Table created");
-
-
                 }
                 catch (SQLException e) 
                 {
@@ -142,15 +138,14 @@ public class UserAccounts
                         // Ensure connection is closed properly
                         if (connection != null) 
                         {
-                        try 
-                        {
-                                connection.close();
-                                // System.out.println("Database connection closed.");
-                        } 
-                        catch (SQLException e) 
-                        {
-                                e.printStackTrace();
-                        }
+                                try 
+                                {
+                                        connection.close();
+                                } 
+                                catch (SQLException e) 
+                                {
+                                        e.printStackTrace();
+                                }
                         }
                 }
         }
