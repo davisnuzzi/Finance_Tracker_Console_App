@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 /**
  * 
  * @author Davis Nuzzi
- * @version 1.0
+ * @version 2.0
  *
  */
 
@@ -22,9 +22,7 @@ public class Actions
 	
 	public static void startScreen() throws IOException
 	{
-		account = (ConsoleUI.accNum == 1) ? "Chase" : "PayPal";
-
-		filename = account + ".txt";
+		account = ConsoleUI.accounts.get(ConsoleUI.accNum - 1);
 		
 		System.out.println("We are currently looking at your " + account + 
 							" account.\n"
@@ -39,11 +37,21 @@ public class Actions
 			{
 				actionNum = ConsoleUI.keyboard.nextInt();
 				
-				if (ConsoleUI.checkValidNumber(actionNum, 1, 4)) 
+				if (checkValidNumber(actionNum, 1, 4)) 
 				{
 					switch (actionNum) 
 					{
+						case 1:
+							UserAccounts.retreiveTableData(account); // !!! CHANGE FILLER ACCOUNT NAME !!!
+						case 2:
+						case 3:
+							
+						case 4:
+							ConsoleUI.startScreen();
+							break;
 						
+						default:
+							break;
 					}
 					
 					startScreen();
@@ -55,6 +63,19 @@ public class Actions
 				System.out.println("Please input a valid number.");
 			}
 		} while(true);
+	}
+
+	/**
+	 * 
+	 * Checks to see if the number selected is valid for the given parameter constraints.
+	 * 
+	 * @param num
+	 * @return the boolean value of whether or not the account number is valid
+	 */
+	
+	public static boolean checkValidNumber(int num, int low, int high)
+	{
+		return num < low || num > high ? false : true;
 	}
 	
 }
