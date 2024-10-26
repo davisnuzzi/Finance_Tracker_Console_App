@@ -30,17 +30,15 @@ public class ConsoleUI
 	{
 		accounts = UserAccounts.retreiveTableData("accounts");
 		
-		String chooseAccount = "Which account are you wanting to look at? (Input number corresponding to the account)\n";
+		StringBuilder chooseAccount = new StringBuilder("Which account are you wanting to look at? (Input number corresponding to the account)\n");
 		
 		for(int i = 0; i < accounts.size(); i++)
 		{
-			chooseAccount = chooseAccount + (i+1) + ". " + accounts.get(i) + "\n";
-		}
+			chooseAccount.append((i+1) + ". " + accounts.get(i) + "\n");		}
 
-		chooseAccount = chooseAccount + (accounts.size()+1) + ". Add Account\n";
+		chooseAccount.append((accounts.size()+1) + ". Add Account\n");
 		
-		System.out.println(chooseAccount);
-		
+		System.out.println(chooseAccount.toString());		
 		// Gather and check the user enters a valid input value
 		// If valid, execute further program methods, else, ask user for new input
 		do 
