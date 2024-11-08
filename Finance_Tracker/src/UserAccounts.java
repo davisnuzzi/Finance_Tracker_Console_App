@@ -26,7 +26,7 @@ public class UserAccounts
                         // Process the ResultSet
                         while (resultSet.next()) 
                         {
-                                String data = resultSet.getString(1);
+                                String data = resultSet.getString(1).replaceAll("_", " ");
                                 dataList.add(data);
                         }
 
@@ -111,22 +111,24 @@ public class UserAccounts
         public static void createAccountTable(String data)
         {
                 Connection connection = null;
+                PreparedStatement createTableStatement = null;
 
                 try 
                 {
                         // Establish connection
                         connection = DriverManager.getConnection(JDBCInitialization.JDBC_URL, JDBCInitialization.JDBC_USER, JDBCInitialization.JDBC_PASSWORD);
-                        // SQL query to create the table
-                        String createTableSQL = "CREATE TABLE IF NOT EXISTS `" + data + "` ("
-                        + "Transaction_ID INT AUTO_INCREMENT PRIMARY KEY, "
-                        + "transaction_date DATE, "  
-                        + "transaction_time TIME, " 
-                        + "amount DECIMAL(10, 2), "
-                        + "reason VARCHAR(20), "
-                        + "total DECIMAL(10, 2)"
-                        + ")";
+                        // SQL query to create the table using StringBuilder for efficient string concatenation
+                        StringBuilder createTableSQL = new StringBuilder();
+                        createTableSQL.append("CREATE TABLE IF NOT EXISTS `").append(data).append("` (")
+                                   .append("Transaction_ID INT AUTO_INCREMENT PRIMARY KEY, ")
+                                   .append("transaction_date DATE, ")
+                                   .append("transaction_time TIME, ")
+                                   .append("amount DECIMAL(10, 2), ")
+                                   .append("reason VARCHAR(20), ")
+                                   .append("total DECIMAL(10, 2)")
+                                   .append(")");
                         
-                        PreparedStatement createTableStatement = connection.prepareStatement(createTableSQL);
+                        createTableStatement = connection.prepareStatement(createTableSQL.toString());
                         createTableStatement.executeUpdate();
                 }
                 catch (SQLException e) 
@@ -135,17 +137,15 @@ public class UserAccounts
                 } 
                 finally 
                 {
-                        // Ensure connection is closed properly
-                        if (connection != null) 
+                        // Ensure resources are closed properly
+                        try 
                         {
-                                try 
-                                {
-                                        connection.close();
-                                } 
-                                catch (SQLException e) 
-                                {
-                                        e.printStackTrace();
-                                }
+                                if (createTableStatement != null) createTableStatement.close();
+                                if (connection != null) connection.close();
+                        } 
+                        catch (SQLException e) 
+                        {
+                                e.printStackTrace();
                         }
                 }
         }
