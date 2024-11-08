@@ -18,14 +18,13 @@ public class JDBCInitialization
     public static String JDBC_USER = "";
     public static String JDBC_PASSWORD = "";
 
-
     /**
-     * 
-     * Initialize the username and password of database 
-     * and ensure successful connection for further program use
-     * 
-     */
-    public static void initialize()
+      * 
+      * Initialize the username and password of database 
+      * and ensure successful connection for further program use
+      * 
+      */
+    public static boolean initialize()
     {
         // Retrieve user inputs for database username and password (more for personal and security)
         System.out.println("Enter MySQL database username:");
@@ -46,22 +45,22 @@ public class JDBCInitialization
 
             // Establish database connection
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
-            System.out.println("Connected to the MySQL database successfully!");
-
+            System.out.println("Connected to the MySQL database successfully!\n");
+            return true;
         } 
         catch (SQLException e) 
         {
             // Handle SQL connection errors
             e.printStackTrace();
             System.out.println("Failed to connect to the database!");
-
+            return false;
         } 
         catch (ClassNotFoundException e) 
         {
             // Handle JDBC driver loading error
             e.printStackTrace();
             System.out.println("MySQL JDBC Driver not found!");
-
+            return false;
         } 
         finally 
         {
@@ -79,5 +78,4 @@ public class JDBCInitialization
             }
         }
     }
-
 }
