@@ -34,7 +34,8 @@ public class ConsoleUI
 		
 		for(int i = 0; i < accounts.size(); i++)
 		{
-			chooseAccount.append((i+1) + ". " + accounts.get(i) + "\n");		}
+			chooseAccount.append((i+1) + ". " + accounts.get(i).replaceAll("_", " ") + "\n");		
+		}
 
 		chooseAccount.append((accounts.size()+1) + ". Add Account\n");
 		
